@@ -1,17 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import "semantic-ui-css/semantic.min.css";
+import { faker } from "@faker-js/faker";
+import App from "./App";
+// moment untuk mengecek tanggal input ke tanggal sekarang
+import moment from "moment/moment";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// mengisi data post
+const dataPost = [
+  {
+    name: faker.name.fullName(), // set dengan faker dengan jenis nama lengkap
+    image: faker.image.avatar(), // set dengan faker dengan jenis gambar avatar
+    post: faker.lorem.lines(), // set dengan faker jenis lorem
+    // dari data faker, kemudian package moment akan menghitung selisih dengan tanggal sekarang
+    createdAt: moment(faker.date.recent()).fromNow(),
+  },
+  {
+    name: faker.name.fullName(),
+    image: faker.image.avatar(),
+    post: faker.lorem.lines(),
+    createdAt: moment(faker.date.recent()).fromNow(),
+  },
+  {
+    name: faker.name.fullName(),
+    image: faker.image.avatar(),
+    post: faker.lorem.lines(),
+    createdAt: moment(faker.date.recent()).fromNow(),
+  },
+];
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const root = ReactDOM.createRoot(document.getElementById("root"));
+// nilai dari dataPost[] akan dipassing ke var data yang akan dibaca pada fungsi App
+root.render(<App data={dataPost} />);

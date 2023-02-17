@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const Blog = (props) => {
+  // membaca var data yang berasal dari index
+  const dataPost = props.data;
+  // kemudian dataPost akan dilakukan iterasi array menggunakan map, karena mengembalikan array untuk dirender pada index
+  const listPost = dataPost.map((b) => (
+    <div className="ui feed">
+      <div className="event">
+        <div className="label">
+          <img src={b.image} alt="user-avatar" />
+        </div>
+        <div className="content">
+          <div className="date">{b.createdAt}</div>
+          <div className="summary">
+            <a href="/">{b.name}</a> created a post
+          </div>
+          <div className="text extra">{b.post}</div>
+        </div>
+      </div>
     </div>
-  );
-}
+  ));
+  return listPost;
+};
 
-export default App;
+export default Blog;
